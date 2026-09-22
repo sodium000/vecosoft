@@ -2,22 +2,22 @@
 
 Two complementary demos in one Next.js app:
 
-1. **Consumer Order Tracking** (`/`) — mobile-first shopper tracking with live preview controls  
+1. **Consumer Order Tracking** (`/`) — mobile-first shopper tracking with live preview controls
 2. **Trackora Admin Dashboard** (`/trackora`) — dark-themed logistics admin panel
 
-![VecoSoft Order Track](public/logo.svg)
+![VecoSoft Order Track](public/Screenshot_24.png)
 
 ## Tech Stack
 
-| Tool | Purpose |
-|------|---------|
-| Next.js 16 (App Router) | Framework |
-| TypeScript | Type safety |
-| Tailwind CSS v4 | Styling |
-| shadcn/ui | UI components |
-| Framer Motion | Animations |
-| Chart.js + react-chartjs-2 | Charts |
-| lucide-react | Icons |
+| Tool                       | Purpose       |
+| -------------------------- | ------------- |
+| Next.js 16 (App Router)    | Framework     |
+| TypeScript                 | Type safety   |
+| Tailwind CSS v4            | Styling       |
+| shadcn/ui                  | UI components |
+| Framer Motion              | Animations    |
+| Chart.js + react-chartjs-2 | Charts        |
+| lucide-react               | Icons         |
 
 ## Getting Started
 
@@ -26,10 +26,10 @@ npm install
 npm run dev
 ```
 
-| App | URL |
-|-----|-----|
-| Trackora dashboard (home) | [http://localhost:3000](http://localhost:3000) |
-| Consumer tracking | [http://localhost:3000/track](http://localhost:3000/track) |
+| App                       | URL                                                                                          |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| Trackora dashboard (home) | [https://magenta-creponne-06cccb.netlify.app/](https://magenta-creponne-06cccb.netlify.app/) |
+| github                    | [https://github.com/sodium000/vecosoft.git](https://github.com/sodium000/vecosoft.git)       |
 
 ### Production
 
@@ -38,7 +38,7 @@ npm run build
 npm start
 ```
 
-Deploy to [Vercel](https://vercel.com/new) with no extra configuration.
+Deploy to [netlify](https://magenta-creponne-06cccb.netlify.app/) with no extra configuration.
 
 ---
 
@@ -102,8 +102,8 @@ Mock paths use `/avatars/1.jpg`, etc. Next.js rewrites these to `/api/avatars/[i
 
 ### Responsive breakpoints
 
-- **Desktop (~1440px)**: full two-column layout, centered max-width shell  
-- **Tablet (~1024px)**: stacked panels, scrollable mobile nav pills  
+- **Desktop (~1440px)**: full two-column layout, centered max-width shell
+- **Tablet (~1024px)**: stacked panels, scrollable mobile nav pills
 - **Mobile**: single column, horizontal nav scroll
 
 ---
@@ -129,4 +129,5 @@ src/
 MIT
 
 ### Design Prompts
+
 See [prompts.md](file:///D:/Job_Task/vecosoft_order_track/prompts.md) for the original design prompts.
