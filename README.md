@@ -130,4 +130,4 @@ MIT
 
 ### Design Prompts
 
-See [prompts.md](file:///D:/Job_Task/vecosoft_order_track/prompts.md) for the original design prompts.
+See [prompts.md](public/prompts.md) for the original design prompts.
