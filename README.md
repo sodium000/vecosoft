@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VecoSoft Order Track
+
+A modern, mobile-first **Order Tracking** screen for an e-commerce app built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion, and Chart.js.
+
+![VecoSoft Order Track](public/logo.svg)
+
+## Features
+
+- **Mobile-first layout** optimized for 360–430px widths
+- **Four delivery scenarios**: In Transit, Delayed, Delivered (Not Received), Tracking Unavailable
+- **Live preview controls** — adjust progress, status, product info, and ETAs; charts update instantly
+- **Chart.js visualizations** — doughnut progress ring + horizontal step bar chart
+- **Framer Motion animations** — staggered timeline, state transitions, banner pulse
+- **shadcn/ui components** — Card, Badge, Dialog, Sheet, Skeleton, Tabs, and more
+- **Global states** — loading skeleton, error with retry
+- **Functional dialogs** — Contact Support sheet, Report Missing Package form, Order Details
+
+## Tech Stack
+
+| Tool | Purpose |
+|------|---------|
+| Next.js 16 (App Router) | Framework |
+| TypeScript | Type safety |
+| Tailwind CSS v4 | Styling |
+| shadcn/ui | UI components |
+| Framer Motion | Animations |
+| Chart.js + react-chartjs-2 | Progress charts |
+| lucide-react | Icons |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Install & Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Preview States
 
-To learn more about Next.js, take a look at the following resources:
+Use the **Preview States** tabs at the top of the screen, or URL query params:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Scenario | URL |
+|----------|-----|
+| In Transit | `/?scenario=in_transit` |
+| Delayed | `/?scenario=delayed` |
+| Delivered (Not Received) | `/?scenario=delivered_not_received` |
+| Tracking Unavailable | `/?scenario=tracking_unavailable` |
+| Loading | `/?view=loading` |
+| Error | `/?view=error` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── Logo.tsx
+│   ├── order-tracker/
+│   │   ├── OrderTracker.tsx          # Main orchestrator
+│   │   ├── OrderTrackerPage.tsx      # Page wrapper + URL state
+│   │   ├── ProductSummaryCard.tsx
+│   │   ├── DeliveryProgressChart.tsx # Chart.js visualizations
+│   │   ├── DeliveryTimeline.tsx
+│   │   ├── StatusBanner.tsx
+│   │   ├── SupportSheet.tsx
+│   │   ├── ReportIssueDialog.tsx
+│   │   ├── DynamicInputPanel.tsx     # Live preview controls
+│   │   └── ...
+│   └── ui/                           # shadcn/ui primitives
+├── data/
+│   └── orderData.ts                  # Mock JSON scenarios
+└── types/
+    └── order.ts
+```
+
+## Live Preview Controls
+
+The **Live Preview Controls** panel lets you dynamically update:
+
+- Delivery progress (0–100% slider)
+- Current status step
+- Product name, quantity, price
+- Estimated delivery and delay ETAs
+
+All changes reflect immediately in the doughnut chart, bar chart, timeline, and product summary.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repo to GitHub
+2. Import the project at [vercel.com/new](https://vercel.com/new)
+3. Deploy — no extra configuration needed
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
