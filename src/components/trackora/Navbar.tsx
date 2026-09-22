@@ -15,7 +15,7 @@ const navItems = ["Dashboard", "Orders", "Customers", "Shipments", "Returns"];
 function NavPills({ className }: { className?: string }) {
   return (
     <div
-      className={`flex items-center gap-1 rounded-full bg-[#0d0d0f] p-1 ${className ?? ""}`}
+      className={`flex items-center gap-1 rounded-full bg-slate-100/90 p-1 border border-slate-200/60 ${className ?? ""}`}
     >
       {navItems.map((item) => {
         const active = item === "Orders";
@@ -23,14 +23,16 @@ function NavPills({ className }: { className?: string }) {
           <button
             key={item}
             type="button"
-            className={`relative shrink-0 rounded-full px-3 py-2 text-xs font-medium transition-colors sm:px-4 sm:text-sm ${
-              active ? "text-[#0a0a0a]" : "text-[#a3a3a3] hover:text-white"
+            className={`relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium transition-colors sm:px-4 sm:text-sm ${
+              active
+                ? "text-blue-600 font-semibold"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
             {active && (
               <motion.span
                 layoutId="trackora-nav-pill"
-                className="absolute inset-0 rounded-full bg-[#baff29]"
+                className="absolute inset-0 rounded-full bg-white shadow-sm"
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}
@@ -50,16 +52,16 @@ export function Navbar() {
       transition={{ duration: 0.45 }}
       className="mx-auto w-full max-w-[1440px] space-y-2"
     >
-      <nav className="flex w-full items-center justify-between gap-3 rounded-full border border-[#2a2a2a] bg-[#161616]/95 px-4 py-2.5 shadow-lg shadow-black/40 backdrop-blur-md sm:gap-4 sm:px-6 lg:px-8">
+      <nav className="flex w-full items-center justify-between gap-3 rounded-full border border-slate-200/80 bg-white/95 px-4 py-2.5 shadow-sm shadow-slate-200/50 backdrop-blur-md sm:gap-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex min-w-0 items-center gap-2 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[#baff29]/50"
+          className="flex min-w-0 items-center gap-2 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
         >
-          <div className="flex size-9 items-center justify-center rounded-xl bg-[#baff29] text-[#0a0a0a]">
+          <div className="flex size-9 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm shadow-blue-500/25">
             <Box className="size-5" strokeWidth={2.2} />
           </div>
-          <span className="text-lg font-semibold tracking-tight">
-            vecoSoft<span className="text-[#baff29]">ora</span>
+          <span className="text-lg font-extrabold tracking-tight text-slate-900">
+            vecoSoft<span className="text-blue-600">ora</span>
           </span>
         </Link>
 
@@ -78,7 +80,7 @@ export function Navbar() {
             <Tooltip key={label}>
               <TooltipTrigger
                 type="button"
-                className="flex size-9 items-center justify-center rounded-full text-[#a3a3a3] transition-colors hover:bg-[#2a2a2a] hover:text-white"
+                className="flex size-9 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
                 aria-label={label}
               >
                 <Icon className="size-[18px]" />
@@ -89,7 +91,7 @@ export function Navbar() {
           <CustomerAvatar
             name="Alex Morgan"
             src="/avatars/10.jpg"
-            className="ml-1 border-[#baff29]/30"
+            className="ml-1 border-slate-200"
           />
         </div>
       </nav>

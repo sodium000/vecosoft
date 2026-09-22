@@ -23,13 +23,13 @@ export function StatsCards() {
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       <motion.div
         {...cardMotion}
-        className="rounded-2xl border border-[#2a2a2a] bg-[#161616] p-5 lg:p-6"
+        className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm shadow-slate-100 lg:p-6"
       >
-        <p className="text-sm font-medium text-[#737373]">
+        <p className="text-sm font-semibold text-slate-500">
           Orders in transit
         </p>
         <motion.p
-          className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+          className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
@@ -42,60 +42,60 @@ export function StatsCards() {
 
       <motion.div
         {...cardMotion}
-        className="rounded-2xl border border-[#2a2a2a] bg-[#161616] p-5 lg:p-6"
+        className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm shadow-slate-100 lg:p-6"
       >
-        <p className="text-sm font-medium text-[#737373]">
+        <p className="text-sm font-semibold text-slate-500">
           Due for delivery today
         </p>
-        <p className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
           {dueToday}
         </p>
-        <p className="mt-8 text-sm text-[#737373]">
+        <p className="mt-8 text-sm text-slate-500">
           Scheduled for final-mile drop-off today
         </p>
       </motion.div>
 
       <motion.div
         {...cardMotion}
-        className="rounded-2xl border border-[#2a2a2a] bg-[#161616] p-5 lg:p-6"
+        className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm shadow-slate-100 lg:p-6"
       >
-        <p className="text-sm font-medium text-[#737373]">
+        <p className="text-sm font-semibold text-slate-500">
           Average delivery time
         </p>
         <p className="mt-2 flex items-baseline gap-1">
-          <span className="text-4xl font-bold tracking-tight text-white">
+          <span className="text-4xl font-extrabold tracking-tight text-slate-900">
             {avgTime}
           </span>
-          <span className="text-lg text-[#737373]">
+          <span className="text-lg font-medium text-slate-500">
             {summaryStats.averageDeliveryTime.unit}
           </span>
         </p>
-        <p className="mt-8 text-sm text-[#737373]">Rolling 30-day average</p>
+        <p className="mt-8 text-sm text-slate-500">Rolling 30-day average</p>
       </motion.div>
 
       <motion.div
         {...cardMotion}
-        className="rounded-2xl border border-[#2a2a2a] bg-[#161616] p-5 lg:p-6"
+        className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm shadow-slate-100 lg:p-6"
       >
         <div className="flex items-start justify-between gap-2">
-          <p className="text-sm font-medium text-[#737373]">
+          <p className="text-sm font-semibold text-slate-500">
             On-time delivery rate
           </p>
-          <Badge className="border-0 bg-[#baff29]/15 text-[#baff29] hover:bg-[#baff29]/15">
+          <Badge className="border border-emerald-200 bg-emerald-50 text-emerald-700 font-semibold hover:bg-emerald-50">
             {summaryStats.onTimeDeliveryRate.label}
           </Badge>
         </div>
-        <p className="mt-2 text-4xl font-bold tracking-tight text-white">
+        <p className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
           {onTime}%
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {summaryStats.onTimeDeliveryRate.breakdown.map((item) => (
             <span
               key={item.label}
-              className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+              className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
                 item.status === "target"
-                  ? "bg-[#baff29] text-[#0a0a0a]"
-                  : "border border-[#2a2a2a] bg-[#0d0d0f] text-[#a3a3a3]"
+                  ? "bg-emerald-100 text-emerald-800"
+                  : "border border-slate-200 bg-slate-100 text-slate-600"
               }`}
             >
               {item.label} {item.value}%
@@ -105,10 +105,10 @@ export function StatsCards() {
         <Button
           variant="outline"
           size="sm"
-          className="mt-4 w-full border-[#2a2a2a] bg-transparent text-[#fafafa] hover:bg-[#2a2a2a] hover:text-white"
+          className="mt-4 w-full border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:text-slate-900"
         >
           View details
-          <ExternalLink className="size-3.5" />
+          <ExternalLink className="size-3.5 text-slate-500" />
         </Button>
       </motion.div>
     </div>

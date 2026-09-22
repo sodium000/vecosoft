@@ -58,41 +58,41 @@ export function ReportIssueDialog({ open, onOpenChange }: ReportIssueDialogProps
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border border-[#2a2a2a] bg-[#161616] text-[#fafafa] shadow-2xl sm:max-w-md">
+      <DialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-2xl sm:max-w-md">
         {submitted ? (
           <div className="flex flex-col items-center py-6 text-center">
-            <CheckCircle2 className="size-12 text-[#baff29]" />
-            <h3 className="mt-3 text-lg font-bold text-white">Report Submitted</h3>
-            <p className="mt-1 text-sm text-[#a3a3a3]">
+            <CheckCircle2 className="size-12 text-emerald-600" />
+            <h3 className="mt-3 text-lg font-bold text-slate-900">Report Submitted</h3>
+            <p className="mt-1 text-sm text-slate-500">
               We&apos;ll investigate and respond within 24 hours.
             </p>
           </div>
         ) : (
           <>
             <DialogHeader>
-              <DialogTitle className="text-lg font-bold text-white">
+              <DialogTitle className="text-lg font-bold text-slate-900">
                 Report Missing Package
               </DialogTitle>
-              <DialogDescription className="text-xs text-[#a3a3a3]">
+              <DialogDescription className="text-xs text-slate-500">
                 Tell us what happened and we&apos;ll look into it right away.
               </DialogDescription>
             </DialogHeader>
 
             <div className="space-y-4 py-2">
               <div className="space-y-2">
-                <Label htmlFor="reason" className="text-xs font-medium text-[#d4d4d4]">
+                <Label htmlFor="reason" className="text-xs font-medium text-slate-700">
                   Reason
                 </Label>
                 <Select
                   value={reason}
                   onValueChange={(v) => setReason(v ?? "")}
                 >
-                  <SelectTrigger id="reason" className="w-full border-[#2a2a2a] bg-[#0d0d0f] text-white">
+                  <SelectTrigger id="reason" className="w-full border-slate-200 bg-slate-50/80 text-slate-900 hover:bg-slate-100/80">
                     <SelectValue placeholder="Select a reason" />
                   </SelectTrigger>
-                  <SelectContent className="border-[#2a2a2a] bg-[#161616] text-[#fafafa]">
+                  <SelectContent className="border-slate-200 bg-white text-slate-900 shadow-md">
                     {reasons.map((r) => (
-                      <SelectItem key={r} value={r} className="focus:bg-[#2a2a2a] focus:text-[#baff29]">
+                      <SelectItem key={r} value={r} className="focus:bg-blue-50 focus:text-blue-600">
                         {r}
                       </SelectItem>
                     ))}
@@ -101,7 +101,7 @@ export function ReportIssueDialog({ open, onOpenChange }: ReportIssueDialogProps
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="description" className="text-xs font-medium text-[#d4d4d4]">
+                <Label htmlFor="description" className="text-xs font-medium text-slate-700">
                   Description
                 </Label>
                 <Textarea
@@ -110,14 +110,14 @@ export function ReportIssueDialog({ open, onOpenChange }: ReportIssueDialogProps
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={4}
-                  className="border-[#2a2a2a] bg-[#0d0d0f] text-white placeholder:text-[#525252] focus-visible:border-[#baff29]/50"
+                  className="border-slate-200 bg-slate-50/80 text-slate-900 placeholder:text-slate-400 focus-visible:border-blue-500 focus-visible:bg-white"
                 />
               </div>
             </div>
 
             <DialogFooter className="flex-col gap-2 sm:flex-col">
               <Button
-                className="w-full bg-[#baff29] font-semibold text-[#0a0a0a] hover:bg-[#c6ff3a]"
+                className="w-full bg-blue-600 font-semibold text-white hover:bg-blue-700"
                 disabled={!reason || !description.trim()}
                 onClick={handleSubmit}
               >
@@ -125,7 +125,7 @@ export function ReportIssueDialog({ open, onOpenChange }: ReportIssueDialogProps
               </Button>
               <Button
                 variant="outline"
-                className="w-full border-[#2a2a2a] bg-[#0d0d0f] text-white hover:bg-[#2a2a2a]"
+                className="w-full border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 onClick={() => onOpenChange(false)}
               >
                 Cancel

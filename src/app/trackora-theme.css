@@ -1,14 +1,15 @@
 .trackora {
-  --trackora-bg: #0a0a0a;
-  --trackora-bg-elevated: #0d0d0f;
-  --trackora-card: #161616;
-  --trackora-card-hover: #1a1a1a;
-  --trackora-border: #2a2a2a;
-  --trackora-muted: #737373;
-  --trackora-text: #fafafa;
-  --trackora-lime: #baff29;
-  --trackora-lime-dim: #9de020;
-  --trackora-panel-light: #ffffff;
+  --trackora-bg: #f8fafc;
+  --trackora-bg-elevated: #f1f5f9;
+  --trackora-card: #ffffff;
+  --trackora-card-hover: #f8fafc;
+  --trackora-border: #e2e8f0;
+  --trackora-muted: #64748b;
+  --trackora-text: #0f172a;
+  --trackora-primary: #2563eb;
+  --trackora-primary-hover: #1d4ed8;
+  --trackora-primary-light: #eff6ff;
+  --trackora-accent: #2563eb;
   background-color: var(--trackora-bg);
   color: var(--trackora-text);
   min-height: 100vh;

@@ -1,13 +1,13 @@
 const PALETTE = [
-  { bg: "#baff29", fg: "#0a0a0a" },
+  { bg: "#2563eb", fg: "#ffffff" },
   { bg: "#6366f1", fg: "#ffffff" },
-  { bg: "#f97316", fg: "#0a0a0a" },
-  { bg: "#06b6d4", fg: "#0a0a0a" },
+  { bg: "#f97316", fg: "#ffffff" },
+  { bg: "#06b6d4", fg: "#ffffff" },
   { bg: "#ec4899", fg: "#ffffff" },
-  { bg: "#84cc16", fg: "#0a0a0a" },
+  { bg: "#84cc16", fg: "#ffffff" },
   { bg: "#a855f7", fg: "#ffffff" },
-  { bg: "#14b8a6", fg: "#0a0a0a" },
-  { bg: "#eab308", fg: "#0a0a0a" },
+  { bg: "#14b8a6", fg: "#ffffff" },
+  { bg: "#eab308", fg: "#ffffff" },
   { bg: "#3b82f6", fg: "#ffffff" },
 ];
 

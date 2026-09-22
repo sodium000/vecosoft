@@ -20,10 +20,10 @@ export function ProductSummaryCard({ product, orderId }: ProductSummaryCardProps
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.1 }}
     >
-      <Card className="overflow-hidden border border-[#2a2a2a] bg-[#161616] text-[#fafafa] shadow-lg shadow-black/40">
+      <Card className="overflow-hidden border border-slate-200/90 bg-white text-slate-900 shadow-sm shadow-slate-100">
         <CardContent className="p-4 sm:p-5 md:p-6">
           <div className="flex gap-3 sm:gap-4 md:gap-5">
-            <div className="relative size-20 shrink-0 overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#0d0d0f] sm:size-24 md:size-28">
+            <div className="relative size-20 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 sm:size-24 md:size-28">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -33,25 +33,25 @@ export function ProductSummaryCard({ product, orderId }: ProductSummaryCardProps
               />
             </div>
             <div className="min-w-0 flex-1">
-              <h3 className="line-clamp-3 text-sm font-semibold leading-snug text-white sm:text-base md:text-lg">
+              <h3 className="line-clamp-3 text-sm font-bold leading-snug text-slate-900 sm:text-base md:text-lg">
                 {product.name}
               </h3>
-              <p className="mt-1 text-xs text-[#a3a3a3] sm:text-sm">
+              <p className="mt-1 text-xs text-slate-500 sm:text-sm">
                 Qty: {product.quantity} · ${product.price.toFixed(2)} each
               </p>
-              <p className="mt-1.5 text-base font-bold text-[#baff29] sm:text-lg md:text-xl">
+              <p className="mt-1.5 text-base font-extrabold text-blue-600 sm:text-lg md:text-xl">
                 ${total.toFixed(2)}
               </p>
             </div>
           </div>
-          <div className="mt-3 flex flex-wrap gap-3 border-t border-[#2a2a2a] pt-3 sm:mt-4 sm:gap-4 sm:pt-4">
-            <div className="flex items-center gap-1.5 text-xs text-[#a3a3a3]">
-              <Calendar className="size-3.5 text-[#737373]" />
+          <div className="mt-3 flex flex-wrap gap-3 border-t border-slate-100 pt-3 sm:mt-4 sm:gap-4 sm:pt-4">
+            <div className="flex items-center gap-1.5 text-xs text-slate-500">
+              <Calendar className="size-3.5 text-slate-400" />
               <span>Ordered {product.orderDate}</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-[#a3a3a3]">
-              <Hash className="size-3.5 text-[#737373]" />
-              <span className="font-mono text-[#baff29]">{orderId}</span>
+            <div className="flex items-center gap-1.5 text-xs text-slate-500">
+              <Hash className="size-3.5 text-slate-400" />
+              <span className="font-mono font-semibold text-blue-600">{orderId}</span>
             </div>
           </div>
         </CardContent>

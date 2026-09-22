@@ -9,14 +9,17 @@ interface OrderTrackerHeaderProps {
   onBack?: () => void;
 }
 
-export function OrderTrackerHeader({ orderId, onBack }: OrderTrackerHeaderProps) {
+export function OrderTrackerHeader({
+  orderId,
+  onBack,
+}: OrderTrackerHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#2a2a2a] bg-[#161616]/95 backdrop-blur-md">
+    <header className="sticky top-0 z-40 w-full rounded-full border-b border-slate-200/80 mt-3 bg-white/95 px-3 py-1 shadow-xs backdrop-blur-md">
       <div className={`${orderTrackHeaderBar} gap-3`}>
         {onBack ? (
           <button
             type="button"
-            className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#0d0d0f] text-[#a3a3a3] transition-colors hover:border-[#baff29]/40 hover:bg-[#2a2a2a] hover:text-white"
+            className="flex size-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-xs transition-colors hover:bg-slate-100 hover:text-slate-900"
             onClick={onBack}
             aria-label="Go back"
           >
@@ -25,7 +28,7 @@ export function OrderTrackerHeader({ orderId, onBack }: OrderTrackerHeaderProps)
         ) : (
           <Link
             href="/"
-            className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#0d0d0f] text-[#a3a3a3] transition-colors hover:border-[#baff29]/40 hover:bg-[#2a2a2a] hover:text-white"
+            className="flex size-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-xs transition-colors hover:bg-slate-100 hover:text-slate-900"
             aria-label="Back to dashboard"
           >
             <ArrowLeft className="size-4" />
@@ -34,25 +37,25 @@ export function OrderTrackerHeader({ orderId, onBack }: OrderTrackerHeaderProps)
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <h1 className="text-base font-semibold tracking-tight text-white sm:text-lg">
+            <h1 className="text-base font-bold tracking-tight text-slate-900 sm:text-lg">
               Live Order Tracking
             </h1>
-            <span className="hidden rounded-full border border-[#2a2a2a] bg-[#0d0d0f] px-2.5 py-0.5 text-xs font-semibold text-[#baff29] sm:inline-block">
+            <span className="hidden rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 sm:inline-block">
               {orderId}
             </span>
           </div>
-          <p className="truncate text-xs text-[#a3a3a3] sm:hidden">{orderId}</p>
+          <p className="truncate text-xs text-slate-500 sm:hidden">{orderId}</p>
         </div>
 
         <Link
           href="/"
-          className="flex items-center gap-2 rounded-xl border border-[#2a2a2a] bg-[#0d0d0f] px-3 py-1.5 transition-colors hover:border-[#baff29]/40"
+          className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-1.5 shadow-xs transition-colors hover:bg-slate-50"
         >
-          <div className="flex size-6 items-center justify-center rounded-md bg-[#baff29] text-[#0a0a0a]">
+          <div className="flex size-6 items-center justify-center rounded-md bg-blue-600 text-white shadow-xs">
             <Box className="size-3.5" strokeWidth={2.4} />
           </div>
-          <span className="hidden text-sm font-semibold tracking-tight text-white sm:inline">
-            vecoSoft<span className="text-[#baff29]">ora</span>
+          <span className="hidden text-sm font-bold tracking-tight text-slate-900 sm:inline">
+            vecoSoft<span className="text-blue-600">ora</span>
           </span>
         </Link>
       </div>

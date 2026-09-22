@@ -28,13 +28,13 @@ interface OrdersListProps {
 function statusDot(status: OrderStatus) {
   switch (status) {
     case "in_transit":
-      return "bg-[#baff29]";
+      return "bg-blue-600";
     case "processing":
-      return "bg-amber-400";
+      return "bg-amber-500";
     case "delivered":
-      return "bg-[#737373]";
+      return "bg-emerald-500";
     default:
-      return "bg-red-400";
+      return "bg-rose-500";
   }
 }
 
@@ -72,36 +72,36 @@ export function OrdersList({
         );
 
   return (
-    <div className="flex h-full min-h-[480px] flex-col rounded-2xl border border-[#2a2a2a] bg-[#161616] p-4 lg:p-5">
+    <div className="flex h-full min-h-[480px] flex-col rounded-2xl border border-slate-200/90 bg-white p-4 shadow-sm shadow-slate-100 lg:p-5">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold text-white">Recent Orders</h2>
+        <h2 className="text-lg font-bold text-slate-900">Recent Orders</h2>
         <div className="flex items-center gap-1">
           <button
             type="button"
-            className="rounded-lg p-2 text-[#737373] hover:bg-[#2a2a2a] hover:text-white"
+            className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
             aria-label="Grid view"
           >
             <LayoutGrid className="size-4" />
           </button>
           <button
             type="button"
-            className="rounded-lg bg-[#2a2a2a] p-2 text-[#baff29]"
+            className="rounded-lg bg-blue-50 p-2 text-blue-600"
             aria-label="List view"
           >
             <List className="size-4" />
           </button>
           <DropdownMenu>
             <DropdownMenuTrigger
-              className="rounded-lg p-2 text-[#737373] outline-none hover:bg-[#2a2a2a] hover:text-white"
+              className="rounded-lg p-2 text-slate-400 outline-none hover:bg-slate-100 hover:text-slate-700"
               aria-label="More options"
             >
               <MoreVertical className="size-4" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="border-[#2a2a2a] bg-[#161616]">
-              <DropdownMenuItem className="focus:bg-[#2a2a2a]">
+            <DropdownMenuContent className="border border-slate-200 bg-white shadow-md">
+              <DropdownMenuItem className="focus:bg-blue-50 focus:text-blue-600">
                 Export list
               </DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-[#2a2a2a]">
+              <DropdownMenuItem className="focus:bg-blue-50 focus:text-blue-600">
                 Refresh
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -109,7 +109,7 @@ export function OrdersList({
         </div>
       </div>
 
-      <div className="relative mb-4 flex flex-wrap gap-1 rounded-full bg-[#0d0d0f] p-1">
+      <div className="relative mb-4 flex flex-wrap gap-1 rounded-full bg-slate-100/90 p-1 border border-slate-200/60">
         {tabs.map((tab) => {
           const active = activeTab === tab.id;
           return (
@@ -118,13 +118,13 @@ export function OrdersList({
               type="button"
               onClick={() => onTabChange(tab.id)}
               className={`relative rounded-full px-3 py-1.5 text-xs font-medium sm:text-sm ${
-                active ? "text-[#0a0a0a]" : "text-[#a3a3a3] hover:text-white"
+                active ? "text-blue-600 font-semibold" : "text-slate-600 hover:text-slate-900"
               }`}
             >
               {active && (
                 <motion.span
                   layoutId="orders-list-tab"
-                  className="absolute inset-0 rounded-full bg-[#baff29]"
+                  className="absolute inset-0 rounded-full bg-white shadow-xs"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
@@ -134,7 +134,7 @@ export function OrdersList({
         })}
       </div>
 
-      <ul className="flex-1 space-y-1 overflow-y-auto pr-1">
+      <ul className="flex-1 space-y-1.5 overflow-y-auto pr-1">
         {filtered.map((order) => {
           const selected = order.id === selectedOrderId;
           return (
@@ -143,32 +143,27 @@ export function OrdersList({
                 type="button"
                 onClick={() => onSelectOrder(order.id)}
                 layout
-                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition-colors ${
-                  selected ? "relative" : "hover:bg-[#1a1a1a]"
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition-all ${
+                  selected
+                    ? "relative bg-blue-50/70 border border-blue-200/80 shadow-xs"
+                    : "border border-transparent hover:bg-slate-50"
                 }`}
               >
-                {selected && (
-                  <motion.span
-                    layoutId="order-row-highlight"
-                    className="absolute inset-0 rounded-xl bg-[#252525] ring-1 ring-[#baff29]/20"
-                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                  />
-                )}
                 <CustomerAvatar
                   name={order.customer.name}
                   src={order.customer.avatar}
-                  className="relative z-10"
+                  className="relative z-10 border-slate-200"
                 />
                 <div className="relative z-10 min-w-0 flex-1">
-                  <p className="truncate font-semibold text-white">{order.id}</p>
-                  <p className="mt-0.5 flex items-center gap-1.5 text-xs text-[#a3a3a3]">
+                  <p className="truncate font-bold text-slate-900">{order.id}</p>
+                  <p className="mt-0.5 flex items-center gap-1.5 text-xs text-slate-500">
                     <span
                       className={`size-1.5 shrink-0 rounded-full ${statusDot(order.status)}`}
                     />
                     {order.statusLabel}
                   </p>
                 </div>
-                <span className="relative z-10 shrink-0 text-sm font-medium text-[#fafafa]">
+                <span className="relative z-10 shrink-0 text-sm font-bold text-slate-900">
                   {formatMoney(order.orderValue)}
                 </span>
               </motion.button>

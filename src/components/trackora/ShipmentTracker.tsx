@@ -33,10 +33,10 @@ export function ShipmentTracker({ steps, orderKey }: ShipmentTrackerProps) {
               className="relative flex flex-1 flex-col items-center"
             >
               {showLine && (
-                <div className="absolute left-[calc(50%+16px)] top-4 h-0.5 w-[calc(100%-32px)] bg-[#e5e5e5]">
+                <div className="absolute left-[calc(50%+16px)] top-4 h-0.5 w-[calc(100%-32px)] bg-slate-200">
                   <motion.div
                     key={`line-${orderKey}-${index}`}
-                    className="h-full origin-left bg-[#baff29]"
+                    className="h-full origin-left bg-blue-600"
                     initial={{ scaleX: 0 }}
                     animate={{
                       scaleX: index < fillThrough ? 1 : 0,
@@ -56,10 +56,10 @@ export function ShipmentTracker({ steps, orderKey }: ShipmentTrackerProps) {
                 transition={{ delay: index * 0.1, duration: 0.35 }}
                 className={`relative z-10 flex size-8 items-center justify-center rounded-full border-2 sm:size-9 ${
                   isDone
-                    ? "border-[#baff29] bg-[#baff29] text-[#0a0a0a]"
+                    ? "border-blue-600 bg-blue-600 text-white"
                     : isCurrent
-                      ? "border-[#baff29] bg-white text-[#0a0a0a] shadow-[0_0_0_4px_rgba(186,255,41,0.25)]"
-                      : "border-[#d4d4d4] bg-white text-[#a3a3a3]"
+                      ? "border-blue-600 bg-white text-blue-600 shadow-[0_0_0_4px_rgba(37,99,235,0.18)]"
+                      : "border-slate-300 bg-white text-slate-400"
                 }`}
               >
                 {isDone ? (
@@ -69,17 +69,17 @@ export function ShipmentTracker({ steps, orderKey }: ShipmentTrackerProps) {
                     animate={{ scale: [1, 1.15, 1] }}
                     transition={{ repeat: Infinity, duration: 1.6 }}
                   >
-                    <Truck className="size-4" />
+                    <Truck className="size-4 text-blue-600" />
                   </motion.span>
                 ) : (
-                  <span className="size-2 rounded-full bg-[#d4d4d4]" />
+                  <span className="size-2 rounded-full bg-slate-300" />
                 )}
               </motion.div>
 
-              <p className="mt-3 max-w-[5rem] text-center text-[10px] font-semibold leading-tight text-[#171717] sm:max-w-none sm:text-xs">
+              <p className="mt-3 max-w-[5rem] text-center text-[10px] font-semibold leading-tight text-slate-800 sm:max-w-none sm:text-xs">
                 {step.label}
               </p>
-              <p className="mt-1 text-center text-[10px] text-[#737373] sm:text-xs">
+              <p className="mt-1 text-center text-[10px] text-slate-500 sm:text-xs">
                 {step.date}
               </p>
             </div>

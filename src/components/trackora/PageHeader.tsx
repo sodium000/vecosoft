@@ -25,17 +25,17 @@ export function PageHeader() {
       transition={{ duration: 0.4, delay: 0.05 }}
       className="flex flex-wrap items-center justify-between gap-4"
     >
-      <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
         Order Tracking
       </h1>
       <Button
         type="button"
         variant="outline"
         onClick={handleExport}
-        className="h-11 rounded-full border-[#2a2a2a] bg-transparent px-5 text-sm font-medium text-[#fafafa] hover:bg-[#161616] hover:text-white"
+        className="h-11 rounded-full border-2 border-slate-300 bg-white px-5 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-100 hover:text-slate-900 hover:border-slate-400"
       >
-        <Download className="size-4" />
-        Export report
+        <Download className="size-4 text-slate-600" />
+        Export Report
       </Button>
     </motion.div>
   );

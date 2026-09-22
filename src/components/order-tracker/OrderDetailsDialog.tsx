@@ -25,55 +25,55 @@ export function OrderDetailsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border border-[#2a2a2a] bg-[#161616] p-5 sm:p-6 text-[#fafafa] shadow-2xl sm:max-w-md">
+      <DialogContent className="max-w-[calc(100%-2rem)] rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 text-slate-900 shadow-2xl sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-lg font-bold text-white">Order Details</DialogTitle>
-          <DialogDescription className="text-xs text-[#a3a3a3]">
-            Order <span className="font-mono text-[#baff29]">{order.id}</span>
+          <DialogTitle className="text-lg font-bold text-slate-900">Order Details</DialogTitle>
+          <DialogDescription className="text-xs text-slate-500">
+            Order <span className="font-mono font-medium text-blue-600">{order.id}</span>
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-3 text-sm pt-2">
           <div className="flex justify-between">
-            <span className="text-[#a3a3a3]">Product</span>
-            <span className="max-w-[60%] text-right font-medium text-white">
+            <span className="text-slate-500">Product</span>
+            <span className="max-w-[60%] text-right font-medium text-slate-900">
               {order.product.name}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#a3a3a3]">Quantity</span>
-            <span className="font-medium text-white">{order.product.quantity}</span>
+            <span className="text-slate-500">Quantity</span>
+            <span className="font-medium text-slate-900">{order.product.quantity}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#a3a3a3]">Unit Price</span>
-            <span className="font-medium text-white">${order.product.price.toFixed(2)}</span>
+            <span className="text-slate-500">Unit Price</span>
+            <span className="font-medium text-slate-900">${order.product.price.toFixed(2)}</span>
           </div>
-          <Separator className="border-[#2a2a2a]" />
+          <Separator className="border-slate-200" />
           <div className="flex justify-between">
-            <span className="text-[#a3a3a3]">Subtotal</span>
-            <span className="font-medium text-white">${total.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-[#a3a3a3]">Shipping</span>
-            <span className="font-semibold text-[#baff29]">Free</span>
+            <span className="text-slate-500">Subtotal</span>
+            <span className="font-medium text-slate-900">${total.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#a3a3a3]">Tax</span>
-            <span className="font-medium text-white">${(total * 0.08).toFixed(2)}</span>
+            <span className="text-slate-500">Shipping</span>
+            <span className="font-semibold text-emerald-600">Free</span>
           </div>
-          <Separator className="border-[#2a2a2a]" />
+          <div className="flex justify-between">
+            <span className="text-slate-500">Tax</span>
+            <span className="font-medium text-slate-900">${(total * 0.08).toFixed(2)}</span>
+          </div>
+          <Separator className="border-slate-200" />
           <div className="flex justify-between text-base">
-            <span className="font-bold text-white">Total</span>
-            <span className="font-extrabold text-[#baff29]">${(total * 1.08).toFixed(2)}</span>
+            <span className="font-bold text-slate-900">Total</span>
+            <span className="font-extrabold text-blue-600">${(total * 1.08).toFixed(2)}</span>
           </div>
-          <Separator className="border-[#2a2a2a]" />
+          <Separator className="border-slate-200" />
           <div className="flex justify-between">
-            <span className="text-[#a3a3a3]">Status</span>
-            <span className="font-semibold text-[#baff29]">{order.statusLabel}</span>
+            <span className="text-slate-500">Status</span>
+            <span className="font-semibold text-blue-600">{order.statusLabel}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#a3a3a3]">Order Date</span>
-            <span className="font-medium text-white">{order.product.orderDate}</span>
+            <span className="text-slate-500">Order Date</span>
+            <span className="font-medium text-slate-900">{order.product.orderDate}</span>
           </div>
         </div>
       </DialogContent>

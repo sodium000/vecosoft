@@ -31,9 +31,9 @@ export function CustomerAvatar({
   const dim = size === "sm" ? "size-7" : "size-9";
 
   return (
-    <Avatar className={`${dim} shrink-0 border border-[#2a2a2a] ${className ?? ""}`}>
+    <Avatar className={`${dim} shrink-0 border border-slate-200 ${className ?? ""}`}>
       {src ? <AvatarImage src={src} alt={name} /> : null}
-      <AvatarFallback className="bg-[#2a2a2a] text-xs font-medium text-[#baff29]">
+      <AvatarFallback className="bg-blue-50 text-xs font-semibold text-blue-700">
         {initials(name)}
       </AvatarFallback>
     </Avatar>

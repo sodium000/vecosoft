@@ -42,7 +42,7 @@ export function OrdersInTransitChart({ trend }: OrdersInTransitChartProps) {
       datasets: [
         {
           data: trend.map((t) => t.value),
-          backgroundColor: "#baff29",
+          backgroundColor: "#2563eb",
           borderRadius: 999,
           borderSkipped: false,
           barThickness: 14,
@@ -60,17 +60,17 @@ export function OrdersInTransitChart({ trend }: OrdersInTransitChartProps) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: "#1a1a1a",
-          titleColor: "#fff",
-          bodyColor: "#baff29",
-          borderColor: "#2a2a2a",
+          backgroundColor: "#ffffff",
+          titleColor: "#0f172a",
+          bodyColor: "#2563eb",
+          borderColor: "#e2e8f0",
           borderWidth: 1,
         },
       },
       scales: {
         x: {
           grid: { display: false },
-          ticks: { color: "#737373", font: { size: 10 } },
+          ticks: { color: "#64748b", font: { size: 10 } },
           border: { display: false },
         },
         y: { display: false, max: maxVal * 1.15 },
@@ -95,7 +95,7 @@ export function OrdersInTransitChart({ trend }: OrdersInTransitChartProps) {
                     name={avatarNames[(idx * 3 + i) % avatarNames.length]}
                     src={av}
                     size="sm"
-                    className="size-6 border-2 border-[#161616]"
+                    className="size-6 border-2 border-white shadow-xs"
                   />
                 ))
               ) : (

@@ -52,11 +52,11 @@ function buildTimelineFromState(
 }
 
 function getStatusColor(scenario: OrderScenario, status: DeliveryStep) {
-  if (scenario === "delayed") return "text-amber-400";
-  if (scenario === "delivered_not_received") return "text-[#baff29]";
-  if (scenario === "tracking_unavailable") return "text-[#baff29]";
-  if (status === "delivered") return "text-[#baff29]";
-  return "text-[#baff29]";
+  if (scenario === "delayed") return "text-amber-700 border-amber-200 bg-amber-50";
+  if (scenario === "delivered_not_received") return "text-blue-700 border-blue-200 bg-blue-50";
+  if (scenario === "tracking_unavailable") return "text-blue-700 border-blue-200 bg-blue-50";
+  if (status === "delivered") return "text-emerald-700 border-emerald-200 bg-emerald-50";
+  return "text-blue-700 border-blue-200 bg-blue-50";
 }
 
 export function OrderTracker({
@@ -171,12 +171,12 @@ export function OrderTracker({
                   onContactSupport={() => setSupportOpen(true)}
                 />
               ) : (
-                <Card className="overflow-hidden border border-[#2a2a2a] bg-[#161616] text-[#fafafa] shadow-lg shadow-black/40">
+                <Card className="overflow-hidden border border-slate-200/90 bg-white text-slate-900 shadow-sm shadow-slate-100">
                   <CardContent className="p-4 sm:p-5 md:p-6">
                     <div className="text-center md:text-left lg:text-center xl:text-left">
                       <Badge
                         variant="outline"
-                        className={`mb-2 border-current font-semibold ${statusColor}`}
+                        className={`mb-2 font-semibold ${statusColor}`}
                       >
                         {liveOrder.statusLabel}
                       </Badge>
@@ -184,12 +184,12 @@ export function OrderTracker({
                         key={liveOrder.statusLabel}
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className={`text-xl font-bold sm:text-2xl ${statusColor}`}
+                        className="text-xl font-extrabold text-slate-900 sm:text-2xl"
                       >
                         {liveOrder.statusLabel}
                       </motion.h2>
-                      <div className="mt-2 flex items-center justify-center gap-1.5 text-sm text-[#a3a3a3] md:justify-start lg:justify-center xl:justify-start">
-                        <Clock className="size-4 shrink-0 text-[#baff29]" />
+                      <div className="mt-2 flex items-center justify-center gap-1.5 text-sm text-slate-500 md:justify-start lg:justify-center xl:justify-start">
+                        <Clock className="size-4 shrink-0 text-blue-600" />
                         <motion.span
                           key={liveOrder.estimatedDelivery}
                           initial={{ opacity: 0 }}
@@ -199,7 +199,7 @@ export function OrderTracker({
                         </motion.span>
                       </div>
                       {liveOrder.deliveredLocation && (
-                        <p className="mt-1 text-sm text-[#a3a3a3]">
+                        <p className="mt-1 text-sm text-slate-500">
                           {liveOrder.deliveredLocation}
                         </p>
                       )}
@@ -223,7 +223,7 @@ export function OrderTracker({
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-xl border border-[#baff29]/30 bg-[#baff29]/10 px-4 py-3 text-center text-sm font-medium text-[#baff29]"
+                  className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-center text-sm font-semibold text-blue-700"
                 >
                   You&apos;ll be notified when tracking is available!
                 </motion.div>
@@ -232,18 +232,18 @@ export function OrderTracker({
               <div className="flex flex-col gap-2 sm:flex-row">
                 <Button
                   variant="outline"
-                  className="flex-1 gap-2 sm:h-11 border-[#2a2a2a] bg-[#0d0d0f] text-white hover:border-[#baff29]/40 hover:bg-[#2a2a2a]"
+                  className="flex-1 gap-2 sm:h-11 border border-slate-200 bg-white text-slate-700 shadow-xs hover:bg-slate-50 hover:text-slate-900"
                   onClick={() => setSupportOpen(true)}
                 >
-                  <Headphones className="size-4 text-[#baff29]" />
+                  <Headphones className="size-4 text-blue-600" />
                   Contact Support
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex-1 gap-2 sm:h-11 border-[#2a2a2a] bg-[#0d0d0f] text-white hover:border-amber-400/40 hover:bg-[#2a2a2a]"
+                  className="flex-1 gap-2 sm:h-11 border border-slate-200 bg-white text-slate-700 shadow-xs hover:bg-slate-50 hover:text-slate-900"
                   onClick={() => setReportOpen(true)}
                 >
-                  <AlertCircle className="size-4 text-[#a3a3a3]" />
+                  <AlertCircle className="size-4 text-slate-400" />
                   Report an Issue
                 </Button>
               </div>
