@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/avatars/:id.jpg",
+        destination: "/api/avatars/:id",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

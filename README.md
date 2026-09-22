@@ -1,19 +1,11 @@
 # VecoSoft Order Track
 
-A modern, mobile-first **Order Tracking** screen for an e-commerce app built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion, and Chart.js.
+Two complementary demos in one Next.js app:
+
+1. **Consumer Order Tracking** (`/`) — mobile-first shopper tracking with live preview controls  
+2. **Trackora Admin Dashboard** (`/trackora`) — dark-themed logistics admin panel
 
 ![VecoSoft Order Track](public/logo.svg)
-
-## Features
-
-- **Responsive layout** from small phones (360px) through tablets and desktop (up to 2xl / ~1440px+), with a two-column grid on large screens
-- **Four delivery scenarios**: In Transit, Delayed, Delivered (Not Received), Tracking Unavailable
-- **Live preview controls** — adjust progress, status, product info, and ETAs; charts update instantly
-- **Chart.js visualizations** — doughnut progress ring + horizontal step bar chart
-- **Framer Motion animations** — staggered timeline, state transitions, banner pulse
-- **shadcn/ui components** — Card, Badge, Dialog, Sheet, Skeleton, Tabs, and more
-- **Global states** — loading skeleton, error with retry
-- **Functional dialogs** — Contact Support sheet, Report Missing Package form, Order Details
 
 ## Tech Stack
 
@@ -24,89 +16,113 @@ A modern, mobile-first **Order Tracking** screen for an e-commerce app built wit
 | Tailwind CSS v4 | Styling |
 | shadcn/ui | UI components |
 | Framer Motion | Animations |
-| Chart.js + react-chartjs-2 | Progress charts |
+| Chart.js + react-chartjs-2 | Charts |
 | lucide-react | Icons |
 
 ## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm
-
-### Install & Run
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+| App | URL |
+|-----|-----|
+| Trackora dashboard (home) | [http://localhost:3000](http://localhost:3000) |
+| Consumer tracking | [http://localhost:3000/track](http://localhost:3000/track) |
 
-### Build for Production
+### Production
 
 ```bash
 npm run build
 npm start
 ```
 
-## Preview States
+Deploy to [Vercel](https://vercel.com/new) with no extra configuration.
 
-Use the **Preview States** tabs at the top of the screen, or URL query params:
+---
 
-| Scenario | URL |
-|----------|-----|
-| In Transit | `/?scenario=in_transit` |
-| Delayed | `/?scenario=delayed` |
-| Delivered (Not Received) | `/?scenario=delivered_not_received` |
-| Tracking Unavailable | `/?scenario=tracking_unavailable` |
-| Loading | `/?view=loading` |
-| Error | `/?view=error` |
+## Consumer Order Tracking (`/`)
 
-## Project Structure
+- Responsive layout (phone → desktop)
+- Scenarios: In Transit, Delayed, Delivered (Not Received), Tracking Unavailable
+- Live preview controls update Chart.js visuals instantly
+- Loading / error states via `?view=loading` or `?view=error`
+
+Query params: `?scenario=in_transit|delayed|delivered_not_received|tracking_unavailable`
+
+Data: `src/data/orderData.ts`
+
+---
+
+## Trackora Admin Dashboard (`/trackora`)
+
+Dark logistics dashboard with lime accent (`#baff29`), near-black background (`#0a0a0a`), and a contrasting white order detail panel.
+
+### Features
+
+- Floating navbar with animated active pill (Orders)
+- Stats row with count-up numbers + Chart.js in-transit sparkline (Sep–Dec)
+- Filter pills (status, courier, dates) + search
+- **40/60 split**: Recent Orders list + Order Detail panel
+- Row selection with Framer Motion highlight; detail panel `AnimatePresence` on order change
+- Shipment stepper replays connector animation when selecting another order
+- Export report (CSV download)
+- **View live tracking** links to consumer app
+
+### State
+
+- `selectedOrderId` in `OrdersDashboard.tsx` (default `#TR-4272`)
+- Row clicks update detail via `orders` from `src/data/mockData.ts`
+- Filters + list tabs reduce visible rows; selection auto-adjusts if filtered out
+
+### Component structure
+
+```
+src/components/trackora/
+├── OrdersDashboard.tsx      # Parent state + layout
+├── Navbar.tsx
+├── PageHeader.tsx
+├── StatsCards.tsx
+├── OrdersInTransitChart.tsx
+├── FiltersBar.tsx
+├── OrdersList.tsx
+├── OrderDetailPanel.tsx
+├── ShipmentTracker.tsx
+└── CustomerAvatar.tsx
+```
+
+### Mock data
+
+`src/data/mockData.ts` — orders, `summaryStats`, `filterOptions`, `defaultSelectedOrderId`
+
+### Avatars
+
+Mock paths use `/avatars/1.jpg`, etc. Next.js rewrites these to `/api/avatars/[id]` (generated SVG placeholders).
+
+### Responsive breakpoints
+
+- **Desktop (~1440px)**: full two-column layout, centered max-width shell  
+- **Tablet (~1024px)**: stacked panels, scrollable mobile nav pills  
+- **Mobile**: single column, horizontal nav scroll
+
+---
+
+## Project layout
 
 ```
 src/
 ├── app/
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
+│   ├── page.tsx                 # Consumer tracking
+│   ├── trackora/page.tsx        # Trackora dashboard
+│   └── api/avatars/[id]/route.ts
 ├── components/
-│   ├── Logo.tsx
-│   ├── order-tracker/
-│   │   ├── OrderTracker.tsx          # Main orchestrator
-│   │   ├── OrderTrackerPage.tsx      # Page wrapper + URL state
-│   │   ├── ProductSummaryCard.tsx
-│   │   ├── DeliveryProgressChart.tsx # Chart.js visualizations
-│   │   ├── DeliveryTimeline.tsx
-│   │   ├── StatusBanner.tsx
-│   │   ├── SupportSheet.tsx
-│   │   ├── ReportIssueDialog.tsx
-│   │   ├── DynamicInputPanel.tsx     # Live preview controls
-│   │   └── ...
-│   └── ui/                           # shadcn/ui primitives
-├── data/
-│   └── orderData.ts                  # Mock JSON scenarios
-└── types/
-    └── order.ts
+│   ├── order-tracker/           # Consumer UI
+│   └── trackora/                # Admin UI
+└── data/
+    ├── orderData.ts
+    └── mockData.ts
 ```
-
-## Live Preview Controls
-
-The **Live Preview Controls** panel lets you dynamically update:
-
-- Delivery progress (0–100% slider)
-- Current status step
-- Product name, quantity, price
-- Estimated delivery and delay ETAs
-
-All changes reflect immediately in the doughnut chart, bar chart, timeline, and product summary.
-
-## Deploy on Vercel
-
-1. Push this repo to GitHub
-2. Import the project at [vercel.com/new](https://vercel.com/new)
-3. Deploy — no extra configuration needed
 
 ## License
 
