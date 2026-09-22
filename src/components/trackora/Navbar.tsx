@@ -2,12 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  Bell,
-  Box,
-  Search,
-  Settings,
-} from "lucide-react";
+import { Bell, Box, Search, Settings } from "lucide-react";
 import { CustomerAvatar } from "./CustomerAvatar";
 import {
   Tooltip,
@@ -15,13 +10,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const navItems = [
-  "Dashboard",
-  "Orders",
-  "Customers",
-  "Shipments",
-  "Returns",
-];
+const navItems = ["Dashboard", "Orders", "Customers", "Shipments", "Returns"];
 
 function NavPills({ className }: { className?: string }) {
   return (
@@ -70,7 +59,7 @@ export function Navbar() {
             <Box className="size-5" strokeWidth={2.2} />
           </div>
           <span className="text-lg font-semibold tracking-tight">
-            Track<span className="text-[#baff29]">ora</span>
+            vecoSoft<span className="text-[#baff29]">ora</span>
           </span>
         </Link>
 

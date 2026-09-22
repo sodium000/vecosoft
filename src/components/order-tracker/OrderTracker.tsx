@@ -52,11 +52,11 @@ function buildTimelineFromState(
 }
 
 function getStatusColor(scenario: OrderScenario, status: DeliveryStep) {
-  if (scenario === "delayed") return "text-amber-600";
-  if (scenario === "delivered_not_received") return "text-emerald-600";
-  if (scenario === "tracking_unavailable") return "text-blue-600";
-  if (status === "delivered") return "text-emerald-600";
-  return "text-blue-600";
+  if (scenario === "delayed") return "text-amber-400";
+  if (scenario === "delivered_not_received") return "text-[#baff29]";
+  if (scenario === "tracking_unavailable") return "text-[#baff29]";
+  if (status === "delivered") return "text-[#baff29]";
+  return "text-[#baff29]";
 }
 
 export function OrderTracker({
@@ -171,12 +171,12 @@ export function OrderTracker({
                   onContactSupport={() => setSupportOpen(true)}
                 />
               ) : (
-                <Card className="overflow-hidden border-slate-200/80 shadow-sm">
+                <Card className="overflow-hidden border border-[#2a2a2a] bg-[#161616] text-[#fafafa] shadow-lg shadow-black/40">
                   <CardContent className="p-4 sm:p-5 md:p-6">
                     <div className="text-center md:text-left lg:text-center xl:text-left">
                       <Badge
                         variant="outline"
-                        className={`mb-2 border-current ${statusColor}`}
+                        className={`mb-2 border-current font-semibold ${statusColor}`}
                       >
                         {liveOrder.statusLabel}
                       </Badge>
@@ -184,12 +184,12 @@ export function OrderTracker({
                         key={liveOrder.statusLabel}
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className={`text-xl font-semibold sm:text-2xl ${statusColor}`}
+                        className={`text-xl font-bold sm:text-2xl ${statusColor}`}
                       >
                         {liveOrder.statusLabel}
                       </motion.h2>
-                      <div className="mt-2 flex items-center justify-center gap-1.5 text-sm text-muted-foreground md:justify-start lg:justify-center xl:justify-start">
-                        <Clock className="size-4 shrink-0" />
+                      <div className="mt-2 flex items-center justify-center gap-1.5 text-sm text-[#a3a3a3] md:justify-start lg:justify-center xl:justify-start">
+                        <Clock className="size-4 shrink-0 text-[#baff29]" />
                         <motion.span
                           key={liveOrder.estimatedDelivery}
                           initial={{ opacity: 0 }}
@@ -199,7 +199,7 @@ export function OrderTracker({
                         </motion.span>
                       </div>
                       {liveOrder.deliveredLocation && (
-                        <p className="mt-1 text-sm text-muted-foreground">
+                        <p className="mt-1 text-sm text-[#a3a3a3]">
                           {liveOrder.deliveredLocation}
                         </p>
                       )}
@@ -223,7 +223,7 @@ export function OrderTracker({
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-lg bg-emerald-50 px-4 py-3 text-center text-sm text-emerald-700"
+                  className="rounded-xl border border-[#baff29]/30 bg-[#baff29]/10 px-4 py-3 text-center text-sm font-medium text-[#baff29]"
                 >
                   You&apos;ll be notified when tracking is available!
                 </motion.div>
@@ -232,18 +232,18 @@ export function OrderTracker({
               <div className="flex flex-col gap-2 sm:flex-row">
                 <Button
                   variant="outline"
-                  className="flex-1 gap-2 sm:h-11"
+                  className="flex-1 gap-2 sm:h-11 border-[#2a2a2a] bg-[#0d0d0f] text-white hover:border-[#baff29]/40 hover:bg-[#2a2a2a]"
                   onClick={() => setSupportOpen(true)}
                 >
-                  <Headphones className="size-4" />
+                  <Headphones className="size-4 text-[#baff29]" />
                   Contact Support
                 </Button>
                 <Button
                   variant="outline"
-                  className="flex-1 gap-2 sm:h-11"
+                  className="flex-1 gap-2 sm:h-11 border-[#2a2a2a] bg-[#0d0d0f] text-white hover:border-amber-400/40 hover:bg-[#2a2a2a]"
                   onClick={() => setReportOpen(true)}
                 >
-                  <AlertCircle className="size-4" />
+                  <AlertCircle className="size-4 text-[#a3a3a3]" />
                   Report an Issue
                 </Button>
               </div>

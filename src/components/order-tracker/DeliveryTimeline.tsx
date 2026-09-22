@@ -25,11 +25,13 @@ const item = {
 
 export function DeliveryTimeline({ events }: DeliveryTimelineProps) {
   return (
-    <Card className="border-slate-200/80 shadow-sm">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-base">Delivery Timeline</CardTitle>
+    <Card className="border border-[#2a2a2a] bg-[#161616] text-[#fafafa] shadow-lg shadow-black/40">
+      <CardHeader className="border-b border-[#2a2a2a] pb-3">
+        <CardTitle className="text-base font-semibold text-white">
+          Delivery Timeline
+        </CardTitle>
       </CardHeader>
-      <CardContent className="pb-4">
+      <CardContent className="pt-4 pb-4">
         <motion.ul
           variants={container}
           initial="hidden"
@@ -43,10 +45,10 @@ export function DeliveryTimeline({ events }: DeliveryTimelineProps) {
                   <div
                     className={`flex size-7 items-center justify-center rounded-full ${
                       event.completed
-                        ? "bg-emerald-500 text-white"
+                        ? "bg-[#baff29] text-[#0a0a0a]"
                         : event.active
-                          ? "bg-blue-600 text-white ring-4 ring-blue-100"
-                          : "border-2 border-slate-200 bg-white text-slate-300"
+                          ? "bg-[#baff29] text-[#0a0a0a] ring-4 ring-[#baff29]/25"
+                          : "border-2 border-[#2a2a2a] bg-[#0d0d0f] text-[#525252]"
                     }`}
                   >
                     {event.completed ? (
@@ -58,38 +60,38 @@ export function DeliveryTimeline({ events }: DeliveryTimelineProps) {
                   {index < events.length - 1 && (
                     <div
                       className={`my-1 w-0.5 flex-1 min-h-8 ${
-                        event.completed ? "bg-emerald-300" : "bg-slate-200"
+                        event.completed ? "bg-[#baff29]" : "bg-[#2a2a2a]"
                       }`}
                     />
                   )}
                 </div>
                 <div className="min-w-0 flex-1 pb-5">
                   <p
-                    className={`text-sm font-medium ${
+                    className={`text-sm ${
                       event.active
-                        ? "text-blue-600"
+                        ? "font-bold text-[#baff29]"
                         : event.completed
-                          ? "text-foreground"
-                          : "text-muted-foreground"
+                          ? "font-semibold text-white"
+                          : "text-[#737373]"
                     }`}
                   >
                     {event.label}
                   </p>
                   {event.timestamp && (
-                    <p className="mt-0.5 text-xs text-muted-foreground">
+                    <p className="mt-0.5 text-xs text-[#a3a3a3]">
                       {event.timestamp}
                     </p>
                   )}
                   {event.location && (
-                    <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
-                      <MapPin className="size-3" />
+                    <p className="mt-1 flex items-center gap-1 text-xs text-[#a3a3a3]">
+                      <MapPin className="size-3 text-[#737373]" />
                       {event.location}
                     </p>
                   )}
                 </div>
               </div>
               {index < events.length - 1 && (
-                <Separator className="mb-3 ml-3.5 hidden" />
+                <Separator className="mb-3 ml-3.5 hidden border-[#2a2a2a]" />
               )}
             </motion.li>
           ))}

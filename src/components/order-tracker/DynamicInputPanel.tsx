@@ -33,22 +33,24 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.15 }}
     >
-      <Card className="border-blue-100 bg-gradient-to-br from-blue-50/50 to-indigo-50/30 shadow-sm">
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-base">
-            <Sliders className="size-4 text-blue-600" />
+      <Card className="border border-[#2a2a2a] bg-[#161616] text-[#fafafa] shadow-lg shadow-black/40">
+        <CardHeader className="border-b border-[#2a2a2a] pb-3">
+          <CardTitle className="flex items-center gap-2 text-base font-semibold text-white">
+            <Sliders className="size-4 text-[#baff29]" />
             Live Preview Controls
-            <Sparkles className="size-3.5 text-amber-500" />
+            <Sparkles className="size-3.5 text-[#baff29]" />
           </CardTitle>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-[#a3a3a3]">
             Adjust values below — charts and timeline update instantly.
           </p>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 pt-4">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="progress">Delivery Progress</Label>
-              <span className="text-sm font-bold text-blue-600">
+              <Label htmlFor="progress" className="text-xs font-medium text-[#d4d4d4]">
+                Delivery Progress
+              </Label>
+              <span className="text-sm font-bold text-[#baff29]">
                 {state.progressPercent}%
               </span>
             </div>
@@ -62,13 +64,15 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
               onChange={(e) =>
                 onChange({ progressPercent: Number(e.target.value) })
               }
-              className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-blue-600"
+              className="h-2 w-full cursor-pointer appearance-none rounded-full bg-[#2a2a2a] accent-[#baff29]"
             />
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="status">Current Status</Label>
+              <Label htmlFor="status" className="text-xs font-medium text-[#d4d4d4]">
+                Current Status
+              </Label>
               <Select
                 value={state.currentStatus}
                 onValueChange={(v) => {
@@ -86,12 +90,12 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
                   });
                 }}
               >
-                <SelectTrigger id="status" className="w-full min-w-0">
+                <SelectTrigger id="status" className="w-full min-w-0 border-[#2a2a2a] bg-[#0d0d0f] text-[#fafafa]">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="border-[#2a2a2a] bg-[#161616] text-[#fafafa]">
                   {STATUS_OPTIONS.map((opt) => (
-                    <SelectItem key={opt.value} value={opt.value}>
+                    <SelectItem key={opt.value} value={opt.value} className="focus:bg-[#2a2a2a] focus:text-[#baff29]">
                       {opt.label}
                     </SelectItem>
                   ))}
@@ -100,7 +104,9 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="quantity">Quantity</Label>
+              <Label htmlFor="quantity" className="text-xs font-medium text-[#d4d4d4]">
+                Quantity
+              </Label>
               <Input
                 id="quantity"
                 type="number"
@@ -110,23 +116,29 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
                 onChange={(e) =>
                   onChange({ quantity: Math.max(1, Number(e.target.value)) })
                 }
+                className="border-[#2a2a2a] bg-[#0d0d0f] text-[#fafafa]"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="productName">Product Name</Label>
+            <Label htmlFor="productName" className="text-xs font-medium text-[#d4d4d4]">
+              Product Name
+            </Label>
             <Input
               id="productName"
               value={state.productName}
               onChange={(e) => onChange({ productName: e.target.value })}
               placeholder="Enter product name"
+              className="border-[#2a2a2a] bg-[#0d0d0f] text-[#fafafa]"
             />
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="price">Price ($)</Label>
+              <Label htmlFor="price" className="text-xs font-medium text-[#d4d4d4]">
+                Price ($)
+              </Label>
               <Input
                 id="price"
                 type="number"
@@ -136,10 +148,13 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
                 onChange={(e) =>
                   onChange({ price: Math.max(0, Number(e.target.value)) })
                 }
+                className="border-[#2a2a2a] bg-[#0d0d0f] text-[#fafafa]"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="eta">Estimated Delivery</Label>
+              <Label htmlFor="eta" className="text-xs font-medium text-[#d4d4d4]">
+                Estimated Delivery
+              </Label>
               <Input
                 id="eta"
                 value={state.estimatedDelivery}
@@ -147,25 +162,32 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
                   onChange({ estimatedDelivery: e.target.value })
                 }
                 placeholder="Today by 6:00 PM"
+                className="border-[#2a2a2a] bg-[#0d0d0f] text-[#fafafa]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="min-w-0 space-y-2">
-              <Label htmlFor="originalEta">Original ETA (delayed)</Label>
+              <Label htmlFor="originalEta" className="text-xs font-medium text-[#d4d4d4]">
+                Original ETA (delayed)
+              </Label>
               <Input
                 id="originalEta"
                 value={state.originalEta}
                 onChange={(e) => onChange({ originalEta: e.target.value })}
+                className="border-[#2a2a2a] bg-[#0d0d0f] text-[#fafafa]"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="newEta">New ETA (delayed)</Label>
+              <Label htmlFor="newEta" className="text-xs font-medium text-[#d4d4d4]">
+                New ETA (delayed)
+              </Label>
               <Input
                 id="newEta"
                 value={state.newEta}
                 onChange={(e) => onChange({ newEta: e.target.value })}
+                className="border-[#2a2a2a] bg-[#0d0d0f] text-[#fafafa]"
               />
             </div>
           </div>

@@ -56,7 +56,7 @@ export function DeliveryProgressChart({
       datasets: [
         {
           data: [clampedProgress, 100 - clampedProgress],
-          backgroundColor: ["#2563eb", "#e2e8f0"],
+          backgroundColor: ["#baff29", "#262626"],
           borderWidth: 0,
           cutout: "78%",
         },
@@ -77,9 +77,9 @@ export function DeliveryProgressChart({
             return 0;
           }),
           backgroundColor: STEPS.map((_, i) => {
-            if (i < stepIndex) return "#22c55e";
-            if (i === stepIndex) return "#2563eb";
-            return "#e2e8f0";
+            if (i < stepIndex) return "#baff29";
+            if (i === stepIndex) return "#baff29";
+            return "#262626";
           }),
           borderRadius: 6,
           borderSkipped: false,
@@ -112,7 +112,7 @@ export function DeliveryProgressChart({
       },
       y: {
         grid: { display: false },
-        ticks: { font: { size: 11 }, color: "#64748b" },
+        ticks: { font: { size: 11 }, color: "#a3a3a3" },
       },
     },
     plugins: {
@@ -146,11 +146,11 @@ export function DeliveryProgressChart({
             key={clampedProgress}
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="text-2xl font-bold text-blue-600 sm:text-3xl"
+            className="text-2xl font-bold text-[#baff29] sm:text-3xl"
           >
             {clampedProgress}%
           </motion.span>
-          <span className="text-xs text-muted-foreground">Journey</span>
+          <span className="text-xs text-[#a3a3a3]">Journey</span>
         </div>
       </div>
 
@@ -170,18 +170,18 @@ export function DeliveryProgressChart({
               className={`size-2.5 shrink-0 rounded-full transition-colors duration-300 sm:size-3 ${
                 i <= stepIndex
                   ? i === stepIndex
-                    ? "bg-blue-600 ring-4 ring-blue-100"
-                    : "bg-emerald-500"
-                  : "bg-slate-200"
+                    ? "bg-[#baff29] ring-4 ring-[#baff29]/30"
+                    : "bg-[#baff29]"
+                  : "bg-[#2a2a2a]"
               }`}
             />
             <span
               className={`w-full max-w-[5.5rem] text-center text-[10px] leading-tight sm:text-xs ${
                 i === stepIndex
-                  ? "font-semibold text-blue-600"
+                  ? "font-semibold text-[#baff29]"
                   : i < stepIndex
-                    ? "text-emerald-600"
-                    : "text-muted-foreground"
+                    ? "text-[#e5e5e5]"
+                    : "text-[#737373]"
               }`}
             >
               {STEP_LABELS[step]}
