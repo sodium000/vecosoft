@@ -26,6 +26,7 @@ import { OrderDetailsDialog } from "./OrderDetailsDialog";
 import { StickyActionBar } from "./StickyActionBar";
 import { EmptyTrackingState } from "./EmptyTrackingState";
 import { DynamicInputPanel } from "./DynamicInputPanel";
+import { orderTrackInset, orderTrackShell } from "@/lib/responsive-layout";
 
 const STEPS: DeliveryStep[] = [
   "processing",
@@ -137,10 +138,10 @@ export function OrderTracker({
   const statusColor = getStatusColor(scenario, liveOrder.currentStatus);
 
   return (
-    <div className="relative mx-auto min-h-screen max-w-[430px] bg-slate-50 pb-24">
+    <div className={orderTrackShell}>
       <OrderTrackerHeader orderId={liveOrder.id} />
 
-      <div className="space-y-4 px-4 pt-3">
+      <div className={orderTrackInset}>
         {/* Dev controls: scenario + view mode tabs */}
         <Card className="border-slate-200/60 bg-white/80">
           <CardContent className="space-y-3 p-3">
@@ -151,12 +152,12 @@ export function OrderTracker({
               value={scenario}
               onValueChange={(v) => onScenarioChange(v as OrderScenario)}
             >
-              <TabsList className="grid h-auto w-full grid-cols-2 gap-1 bg-slate-100 p-1">
+              <TabsList className="grid h-auto w-full grid-cols-2 gap-1 bg-slate-100 p-1 sm:grid-cols-4">
                 {(Object.keys(scenarioLabels) as OrderScenario[]).map((s) => (
                   <TabsTrigger
                     key={s}
                     value={s}
-                    className="text-[10px] leading-tight px-1 py-1.5"
+                    className="px-1 py-1.5 text-[10px] leading-tight sm:text-xs sm:py-2"
                   >
                     {scenarioLabels[s]}
                   </TabsTrigger>
@@ -190,110 +191,118 @@ export function OrderTracker({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="space-y-4"
+              className="space-y-4 lg:space-y-0"
             >
-              <ProductSummaryCard
-                product={liveOrder.product}
-                orderId={liveOrder.id}
-              />
+              <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-12">
+                <div className="min-w-0 space-y-4 md:space-y-5 lg:col-span-1 xl:col-span-5">
+                  <ProductSummaryCard
+                    product={liveOrder.product}
+                    orderId={liveOrder.id}
+                  />
 
-              <DynamicInputPanel
-                state={dynamicState}
-                onChange={handleDynamicChange}
-              />
+                  <DynamicInputPanel
+                    state={dynamicState}
+                    onChange={handleDynamicChange}
+                  />
 
-              <StatusBanner
-                scenario={scenario}
-                originalEta={liveOrder.originalEta}
-                newEta={liveOrder.newEta}
-                onTrackUpdate={() => setSupportOpen(true)}
-                onContactSupport={() => setSupportOpen(true)}
-                onReportMissing={() => setReportOpen(true)}
-              />
+                </div>
 
-              {scenario === "tracking_unavailable" ? (
-                <EmptyTrackingState
-                  updateEstimate={baseOrder.trackingUpdateEstimate}
-                  showSkeleton
-                  onNotify={() => setNotifySent(true)}
-                  onContactSupport={() => setSupportOpen(true)}
-                />
-              ) : (
-                <Card className="overflow-hidden border-slate-200/80 shadow-sm">
-                  <CardContent className="p-4">
-                    <div className="text-center">
-                      <Badge
-                        variant="outline"
-                        className={`mb-2 border-current ${statusColor}`}
-                      >
-                        {liveOrder.statusLabel}
-                      </Badge>
-                      <motion.h2
-                        key={liveOrder.statusLabel}
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className={`text-xl font-bold ${statusColor}`}
-                      >
-                        {liveOrder.statusLabel}
-                      </motion.h2>
-                      <div className="mt-2 flex items-center justify-center gap-1.5 text-sm text-muted-foreground">
-                        <Clock className="size-4" />
-                        <motion.span
-                          key={liveOrder.estimatedDelivery}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                        >
-                          {liveOrder.estimatedDelivery}
-                        </motion.span>
-                      </div>
-                      {liveOrder.deliveredLocation && (
-                        <p className="mt-1 text-xs text-muted-foreground">
-                          {liveOrder.deliveredLocation}
-                        </p>
-                      )}
-                    </div>
+                <div className="min-w-0 space-y-4 md:space-y-5 lg:col-span-1 xl:col-span-7">
+                  <StatusBanner
+                    scenario={scenario}
+                    originalEta={liveOrder.originalEta}
+                    newEta={liveOrder.newEta}
+                    onTrackUpdate={() => setSupportOpen(true)}
+                    onContactSupport={() => setSupportOpen(true)}
+                    onReportMissing={() => setReportOpen(true)}
+                  />
 
-                    <div className="mt-4">
-                      <DeliveryProgressChart
-                        progressPercent={liveOrder.progressPercent}
-                        currentStatus={liveOrder.currentStatus}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
+                  {scenario === "tracking_unavailable" ? (
+                    <EmptyTrackingState
+                      updateEstimate={baseOrder.trackingUpdateEstimate}
+                      showSkeleton
+                      onNotify={() => setNotifySent(true)}
+                      onContactSupport={() => setSupportOpen(true)}
+                    />
+                  ) : (
+                    <Card className="overflow-hidden border-slate-200/80 shadow-sm">
+                      <CardContent className="p-4 sm:p-5 md:p-6">
+                        <div className="text-center md:text-left lg:text-center xl:text-left">
+                          <Badge
+                            variant="outline"
+                            className={`mb-2 border-current ${statusColor}`}
+                          >
+                            {liveOrder.statusLabel}
+                          </Badge>
+                          <motion.h2
+                            key={liveOrder.statusLabel}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className={`text-xl font-bold sm:text-2xl md:text-3xl ${statusColor}`}
+                          >
+                            {liveOrder.statusLabel}
+                          </motion.h2>
+                          <div className="mt-2 flex items-center justify-center gap-1.5 text-sm text-muted-foreground sm:text-base md:justify-start lg:justify-center xl:justify-start">
+                            <Clock className="size-4 shrink-0" />
+                            <motion.span
+                              key={liveOrder.estimatedDelivery}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              className="text-left"
+                            >
+                              {liveOrder.estimatedDelivery}
+                            </motion.span>
+                          </div>
+                          {liveOrder.deliveredLocation && (
+                            <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
+                              {liveOrder.deliveredLocation}
+                            </p>
+                          )}
+                        </div>
 
-              {scenario !== "tracking_unavailable" && (
-                <DeliveryTimeline events={liveOrder.timeline} />
-              )}
+                        <div className="mt-4 md:mt-6">
+                          <DeliveryProgressChart
+                            progressPercent={liveOrder.progressPercent}
+                            currentStatus={liveOrder.currentStatus}
+                          />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
 
-              {notifySent && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="rounded-lg bg-emerald-50 px-4 py-3 text-center text-sm text-emerald-700"
-                >
-                  You&apos;ll be notified when tracking is available!
-                </motion.div>
-              )}
+                  {scenario !== "tracking_unavailable" && (
+                    <DeliveryTimeline events={liveOrder.timeline} />
+                  )}
 
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  className="flex-1 gap-2"
-                  onClick={() => setSupportOpen(true)}
-                >
-                  <Headphones className="size-4" />
-                  Contact Support
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex-1 gap-2"
-                  onClick={() => setReportOpen(true)}
-                >
-                  <AlertCircle className="size-4" />
-                  Report an Issue
-                </Button>
+                  {notifySent && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="rounded-lg bg-emerald-50 px-4 py-3 text-center text-sm text-emerald-700 sm:text-base"
+                    >
+                      You&apos;ll be notified when tracking is available!
+                    </motion.div>
+                  )}
+
+                  <div className="flex flex-col gap-2 sm:flex-row">
+                    <Button
+                      variant="outline"
+                      className="flex-1 gap-2 sm:h-11"
+                      onClick={() => setSupportOpen(true)}
+                    >
+                      <Headphones className="size-4" />
+                      Contact Support
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="flex-1 gap-2 sm:h-11"
+                      onClick={() => setReportOpen(true)}
+                    >
+                      <AlertCircle className="size-4" />
+                      Report an Issue
+                    </Button>
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}

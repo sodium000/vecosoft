@@ -8,6 +8,7 @@ import { getOrderByScenario } from "@/data/orderData";
 import { OrderTracker } from "./OrderTracker";
 import { OrderTrackerSkeleton } from "./OrderTrackerSkeleton";
 import { OrderTrackerError } from "./OrderTrackerError";
+import { orderTrackHeaderBar, orderTrackInset, orderTrackShell } from "@/lib/responsive-layout";
 
 const VALID_SCENARIOS: OrderScenario[] = [
   "in_transit",
@@ -69,11 +70,15 @@ export function OrderTrackerPage() {
 
   if (isInitialLoading) {
     return (
-      <div className="mx-auto min-h-screen max-w-[430px] bg-slate-50">
-        <div className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 px-4 py-3 backdrop-blur-md">
-          <div className="h-10 animate-pulse rounded-lg bg-slate-100" />
+      <div className={orderTrackShell}>
+        <div className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
+          <div className={orderTrackHeaderBar}>
+            <div className="h-10 w-full animate-pulse rounded-lg bg-slate-100 sm:h-11" />
+          </div>
         </div>
-        <OrderTrackerSkeleton />
+        <div className={orderTrackInset}>
+          <OrderTrackerSkeleton />
+        </div>
       </div>
     );
   }
@@ -86,12 +91,16 @@ export function OrderTrackerPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="mx-auto min-h-screen max-w-[430px] bg-slate-50"
+          className={orderTrackShell}
         >
-          <div className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 px-4 py-3 backdrop-blur-md">
-            <div className="h-10 animate-pulse rounded-lg bg-slate-100" />
+          <div className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
+            <div className={orderTrackHeaderBar}>
+              <div className="h-10 w-full animate-pulse rounded-lg bg-slate-100 sm:h-11" />
+            </div>
           </div>
-          <OrderTrackerSkeleton />
+          <div className={orderTrackInset}>
+            <OrderTrackerSkeleton />
+          </div>
         </motion.div>
       )}
 
@@ -101,10 +110,12 @@ export function OrderTrackerPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="mx-auto flex min-h-screen max-w-[430px] flex-col bg-slate-50"
+          className={`${orderTrackShell} flex flex-col`}
         >
-          <div className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 px-4 py-3 backdrop-blur-md">
-            <p className="text-base font-semibold">Order Tracking</p>
+          <div className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
+            <div className={orderTrackHeaderBar}>
+              <p className="text-base font-semibold sm:text-lg">Order Tracking</p>
+            </div>
           </div>
           <OrderTrackerError onRetry={handleRetry} />
         </motion.div>

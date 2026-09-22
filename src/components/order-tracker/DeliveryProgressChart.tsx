@@ -133,9 +133,9 @@ export function DeliveryProgressChart({
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="space-y-4"
+      className="flex w-full min-w-0 flex-col gap-4 md:gap-6 lg:flex-row lg:items-center lg:justify-between xl:gap-8"
     >
-      <div className="relative mx-auto h-36 w-36">
+      <div className="relative mx-auto h-36 w-36 shrink-0 sm:h-40 sm:w-40 md:h-44 md:w-44 lg:mx-0">
         <Doughnut
           key={`doughnut-${chartKey}`}
           data={doughnutData}
@@ -146,7 +146,7 @@ export function DeliveryProgressChart({
             key={clampedProgress}
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="text-2xl font-bold text-blue-600"
+            className="text-2xl font-bold text-blue-600 sm:text-3xl"
           >
             {clampedProgress}%
           </motion.span>
@@ -154,19 +154,20 @@ export function DeliveryProgressChart({
         </div>
       </div>
 
-      <div className="h-28">
-        <Bar
-          key={`bar-${chartKey}`}
-          data={barData}
-          options={barOptions}
-        />
-      </div>
+      <div className="min-w-0 flex-1 space-y-4 lg:max-w-none">
+        <div className="h-28 w-full sm:h-32 md:h-36">
+          <Bar
+            key={`bar-${chartKey}`}
+            data={barData}
+            options={barOptions}
+          />
+        </div>
 
-      <div className="flex justify-between px-1">
+        <div className="grid grid-cols-4 gap-1 px-0.5 sm:gap-2">
         {STEPS.map((step, i) => (
-          <div key={step} className="flex flex-col items-center gap-1">
+          <div key={step} className="flex min-w-0 flex-col items-center gap-1">
             <div
-              className={`size-2.5 rounded-full transition-colors duration-300 ${
+              className={`size-2.5 shrink-0 rounded-full transition-colors duration-300 sm:size-3 ${
                 i <= stepIndex
                   ? i === stepIndex
                     ? "bg-blue-600 ring-4 ring-blue-100"
@@ -175,7 +176,7 @@ export function DeliveryProgressChart({
               }`}
             />
             <span
-              className={`max-w-[4.5rem] text-center text-[10px] leading-tight ${
+              className={`w-full max-w-[5.5rem] text-center text-[10px] leading-tight sm:text-xs ${
                 i === stepIndex
                   ? "font-semibold text-blue-600"
                   : i < stepIndex
@@ -187,6 +188,7 @@ export function DeliveryProgressChart({
             </span>
           </div>
         ))}
+        </div>
       </div>
     </motion.div>
   );

@@ -66,8 +66,8 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="min-w-0 space-y-2">
               <Label htmlFor="status">Current Status</Label>
               <Select
                 value={state.currentStatus}
@@ -86,7 +86,7 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
                   });
                 }}
               >
-                <SelectTrigger id="status" className="w-full">
+                <SelectTrigger id="status" className="w-full min-w-0">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -124,8 +124,8 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="min-w-0 space-y-2">
               <Label htmlFor="price">Price ($)</Label>
               <Input
                 id="price"
@@ -151,8 +151,8 @@ export function DynamicInputPanel({ state, onChange }: DynamicInputPanelProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="min-w-0 space-y-2">
               <Label htmlFor="originalEta">Original ETA (delayed)</Label>
               <Input
                 id="originalEta"

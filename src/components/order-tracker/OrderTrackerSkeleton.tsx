@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export function OrderTrackerSkeleton() {
   return (
-    <div className="space-y-4 px-4 py-4">
+    <div className="w-full min-w-0 space-y-4 py-2 sm:space-y-5 md:py-4">
       <Card>
         <CardContent className="p-4">
           <div className="flex gap-3">

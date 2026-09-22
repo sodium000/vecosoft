@@ -6,7 +6,7 @@ A modern, mobile-first **Order Tracking** screen for an e-commerce app built wit
 
 ## Features
 
-- **Mobile-first layout** optimized for 360–430px widths
+- **Responsive layout** from small phones (360px) through tablets and desktop (up to 2xl / ~1440px+), with a two-column grid on large screens
 - **Four delivery scenarios**: In Transit, Delayed, Delivered (Not Received), Tracking Unavailable
 - **Live preview controls** — adjust progress, status, product info, and ETAs; charts update instantly
 - **Chart.js visualizations** — doughnut progress ring + horizontal step bar chart

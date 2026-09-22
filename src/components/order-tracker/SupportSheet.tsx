@@ -44,7 +44,10 @@ const supportOptions = [
 export function SupportSheet({ open, onOpenChange }: SupportSheetProps) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="bottom" className="rounded-t-2xl px-4 pb-8">
+      <SheetContent
+        side="bottom"
+        className="max-h-[90vh] overflow-y-auto rounded-t-2xl px-4 pb-8 sm:px-6 md:left-1/2 md:max-w-lg md:-translate-x-1/2 md:px-8 lg:max-w-xl"
+      >
         <SheetHeader className="text-left">
           <SheetTitle>Contact Support</SheetTitle>
           <SheetDescription>
